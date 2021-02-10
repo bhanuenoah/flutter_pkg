@@ -23,12 +23,10 @@ class TwiliozoompkgPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    }else if (call.method == "connectTwilio") {
-      result.success("Connected to Twilio")
+    if (call.method == "connectTwilio") {
+      result.success(Twilio.connectTwilio())
     }else if (call.method == "connectZoom") {
-      result.success("Connected to Zoom")
+      result.success(Zoom.connectZoom())
     } else {
       result.notImplemented()
     }
