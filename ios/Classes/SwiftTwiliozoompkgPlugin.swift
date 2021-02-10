@@ -12,9 +12,9 @@ public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
   print("Native Method Fired")
   switch call.method {
     case "connectTwilio":
-      result("Twilio Connected.")
+      result("Connected to Twilio.")
     case "connectZoom":
-      result("connectZoom Connected.")
+      result("Connected to Zoom.")
     default:
       result(FlutterMethodNotImplemented)
     } 
