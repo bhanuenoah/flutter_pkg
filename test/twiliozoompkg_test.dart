@@ -7,29 +7,26 @@ void main() {
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  // setUp(() {
-  //   channel.setMockMethodCallHandler((MethodCall methodCall) async {
-  //     return 'Connected to Zoom';
-  //   });
-  // });
-
-  tearDown(() {
-    channel.setMockMethodCallHandler(null);
-  });
-
   test('connectZoom', () async {
+    //Mocking the native call and returning the sample response
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
       return 'Connected to Zoom';
     });
-    //Testing that we should get the message what we have passed
+    //Testing that we should get the same sample message what we have passed
     expect(await Twiliozoompkg.connectZoom, 'Connected to Zoom');
   });
 
   test('connectTwilio', () async {
+    //Mocking the native call and returning the sample response
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
       return 'Connected to Twilio';
     });
     //Testing that we should get the message what we have passed
     expect(await Twiliozoompkg.connectTwilio, 'Connected to Twilio');
+  });
+
+  //Will be invoked after each test case
+  tearDown(() {
+    channel.setMockMethodCallHandler(null);
   });
 }
