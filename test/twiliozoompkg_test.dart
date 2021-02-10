@@ -7,17 +7,29 @@ void main() {
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
-    });
-  });
+  // setUp(() {
+  //   channel.setMockMethodCallHandler((MethodCall methodCall) async {
+  //     return 'Connected to Zoom';
+  //   });
+  // });
 
   tearDown(() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await Twiliozoompkg.platformVersion, '42');
+  test('connectZoom', () async {
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+      return 'Connected to Zoom';
+    });
+    //Testing that we should get the message what we have passed
+    expect(await Twiliozoompkg.connectZoom, 'Connected to Zoom');
+  });
+
+  test('connectTwilio', () async {
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+      return 'Connected to Twilio';
+    });
+    //Testing that we should get the message what we have passed
+    expect(await Twiliozoompkg.connectTwilio, 'Connected to Twilio');
   });
 }
